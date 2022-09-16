@@ -7,7 +7,7 @@ A GUI program written in C with Nuklear for creating RAMDisks of ReactOS for Win
 This helps you installing the bootsector as well as creating freeldr.ini file and copying files
 
 ## Compiling:
-Use provided makefile to compile the program and a batch file for MSVC compiler. Precompiled version of Windows will be distributed later.
+Use provided makefile to compile the program and a batch file for MSVC compiler. Precompiled version for Windows is in the `Release` section.
 
 ## Usage:
 Make sure to run the program with sudo (or admin) privileges. Follow the onscreen instructions.
