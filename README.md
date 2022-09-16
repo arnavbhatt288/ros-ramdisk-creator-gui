@@ -3,7 +3,7 @@
 ![screenshot](assets/screenshot.png)
 
 ## About:
-A program written in C for creating RAMDisks of ReactOS for Windows and Linux.
+A GUI program written in C with Nuklear for creating RAMDisks of ReactOS for Windows and Linux.
 This helps you installing the bootsector as well as creating freeldr.ini file and copying files
 
 ## Compiling:
