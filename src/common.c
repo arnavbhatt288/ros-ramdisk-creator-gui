@@ -210,7 +210,7 @@ bool generate_freeldr_ini(utils_variables *pvariables)
     int i = 0;
     
 #ifdef _WIN32
-    sprintf(temp_path, "%sfreeldr.ini", pvariables->mounted_path);
+    sprintf(temp_path, "%sfreeldr.ini", pvariables->partitions[pvariables->current_partition]);
 #else
     sprintf(temp_path, "%s/freeldr.ini", pvariables->mounted_path);
 #endif
