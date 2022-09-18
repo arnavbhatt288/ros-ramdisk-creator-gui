@@ -139,19 +139,19 @@ INI_DATA MainIniData[] =
 
 INI_DATA BootCDIniData[] =
 {
-    {"FREELOADER", "DefaultOS", "BootCD"},
+    {"FREELOADER", "DefaultOS", "BootCD_Debug"},
     {"Operating Systems", "BootCD", "\"BootCD\""},
     {"Operating Systems", "BootCD_Debug", "\"BootCD (Debug)\""},
     {"Operating Systems", "BootCD_Screen", "\"BootCD (Screen)\""},
     {"BootCD", "BootType", "ReactOSSetup"},
     {"BootCD", "SystemPath", "ramdisk(0)\\"},
-    {"BootCD", "Options", "/MININT /RDPATH=bootcd.iso /RDEXPORTASCD"},
+    {"BootCD", "Options", "/NODEBUG /NOGUIBOOT /MININT /RDPATH=bootcd.iso /RDEXPORTASCD /SIFOPTIONSOVERRIDE"},
     {"BootCD_Debug", "BootType", "ReactOSSetup"},
     {"BootCD_Debug", "SystemPath", "ramdisk(0)\\"},
-    {"BootCD_Debug", "Options", "/DEBUG /DEBUGPORT=COM1 /BAUDRATE=115200 /SOS /MININT /RDPATH=bootcd.iso /RDEXPORTASCD"},
+    {"BootCD_Debug", "Options", "/DEBUG /DEBUGPORT=COM1 /BAUDRATE=115200 /NOGUIBOOT /MININT /RDPATH=bootcd.iso /RDEXPORTASCD /SIFOPTIONSOVERRIDE"},
     {"BootCD_Screen", "BootType", "ReactOSSetup"},
     {"BootCD_Screen", "SystemPath", "ramdisk(0)\\"},
-    {"BootCD_Screen", "Options", "/DEBUG /DEBUGPORT=SCREEN /SOS /MININT /RDPATH=bootcd.iso /RDEXPORTASCD"},
+    {"BootCD_Screen", "Options", "/DEBUG /DEBUGPORT=SCREEN /SOS /MININT /RDPATH=bootcd.iso /RDEXPORTASCD /SIFOPTIONSOVERRIDE"},
 };
 
 INI_DATA LiveCDIniData[] =
