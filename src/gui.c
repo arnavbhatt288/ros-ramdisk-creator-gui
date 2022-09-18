@@ -16,7 +16,7 @@
     #endif
     #include <windows.h>
     #include "utils_win.h"
-#else
+#elif __linux__
     #include <strings.h>
     #include "utils_linux.h"
 #endif

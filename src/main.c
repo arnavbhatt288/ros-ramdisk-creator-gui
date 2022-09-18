@@ -3,7 +3,7 @@
 
 #ifdef _WIN32
     #include "gdi.h"
-#else
+#elif __linux__
     #include "x11.h"
 #endif
 

@@ -204,7 +204,6 @@ void gather_partition_info(utils_variables *pvariables)
     pvariables->label = malloc(strlen(templabel));
     strcpy(pvariables->fs_type, tempfs);
     strcpy(pvariables->label, templabel);
-    pvariables->is_partition_mounted = pvariables->partitions[pvariables->current_partition];
 }
 
 void start_thread(utils_variables *pvariables)

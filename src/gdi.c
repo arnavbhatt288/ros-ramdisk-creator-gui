@@ -114,6 +114,10 @@ int start_program(void)
         MessageBox(NULL, "Run the program as administrator!", "Error", MB_OK | MB_ICONEXCLAMATION);
         return 1;
     }
+    else
+    {
+		pvariables->is_partition_mounted = true;
+	}
     
     /* Struct initialization */
     memset(&variables, 0, sizeof variables);

@@ -15,7 +15,9 @@ typedef struct
     char path[3][4096];
     char *fs_type;
     char *label;
+#ifdef __linux__
     char *mounted_path;
+#endif
     char status[64];
     double free_size;
     int current_partition;
