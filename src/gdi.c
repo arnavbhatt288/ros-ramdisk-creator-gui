@@ -114,10 +114,6 @@ int start_program(void)
         MessageBox(NULL, "Run the program as administrator!", "Error", MB_OK | MB_ICONEXCLAMATION);
         return 1;
     }
-    else
-    {
-		pvariables->is_partition_mounted = true;
-	}
     
     /* Struct initialization */
     memset(&variables, 0, sizeof variables);
@@ -126,6 +122,7 @@ int start_program(void)
     strcpy(variables.status, "Standby...");
     variables.generate_ini = 1;
     variables.is_thread_active = false;
+    variables.is_partition_mounted = true;
 
 
     /* Win32 */
