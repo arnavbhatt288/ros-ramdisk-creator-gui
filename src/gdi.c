@@ -34,11 +34,25 @@
  *
  * ===============================================================*/
 
+BOOL IsWindowsVistaOrNewer()
+{
+    OSVERSIONINFO osvi;
+
+    ZeroMemory(&osvi, sizeof(OSVERSIONINFO));
+    osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
+
+    GetVersionEx(&osvi);
+
+    return osvi.dwMajorVersion > 5;
+}
+
 BOOL IsProcessElevated()
 {
-    BOOL fIsElevated = FALSE;
+    SID_IDENTIFIER_AUTHORITY NtAuthority = SECURITY_NT_AUTHORITY;
+    PSID AdministratorsGroup = NULL;
     HANDLE hToken = NULL;
     TOKEN_ELEVATION elevation;
+    BOOL fIsElevated = FALSE;
     DWORD dwSize;
 
     if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken))
@@ -46,19 +60,41 @@ BOOL IsProcessElevated()
         goto Cleanup;
     }
 
-
-    if (!GetTokenInformation(hToken, TokenElevation, &elevation, sizeof(elevation), &dwSize))
-    {    
-        goto Cleanup;
+    if (IsWindowsVistaOrNewer())
+    {
+        if (!GetTokenInformation(hToken, TokenElevation, &elevation, sizeof(elevation), &dwSize))
+        {   
+            goto Cleanup;
+        }
+        fIsElevated = elevation.TokenIsElevated;
     }
-
-    fIsElevated = elevation.TokenIsElevated;
+    else
+    {
+        /* Windows 2003 and older doesn't support TOKEN_ELEVATION */
+        /* check for Administrator group membership instead       */
+        if (!AllocateAndInitializeSid(
+            &NtAuthority,
+            2,
+            SECURITY_BUILTIN_DOMAIN_RID,
+            DOMAIN_ALIAS_RID_ADMINS,
+            0, 0, 0, 0, 0, 0,
+            &AdministratorsGroup))
+        {
+            goto Cleanup;
+        }
+        CheckTokenMembership(NULL, AdministratorsGroup, &fIsElevated);
+    }
 
 Cleanup:
     if (hToken)
     {
         CloseHandle(hToken);
         hToken = NULL;
+    }
+    if (AdministratorsGroup)
+    {
+        FreeSid(AdministratorsGroup); 
+        AdministratorsGroup = NULL;
     }
     return fIsElevated; 
 }
