@@ -13,7 +13,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 {
     return start_program();
 }
-#else
+#elif __linux__
 int main()
 {
     return start_program();

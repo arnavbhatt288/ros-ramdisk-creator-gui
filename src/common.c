@@ -181,7 +181,7 @@ bool copy_required_files(utils_variables *pvariables)
         ret = CopyFile(pvariables->path[LIVECD_PATH], temp_path, TRUE);
         pvariables->progress = 80;
     }
-#else __linux__
+#elif __linux__
     sprintf(temp_path, "%s/freeldr.sys", pvariables->mounted_path);
     ret = copy_file(temp_path, pvariables->path[FREELDRSYS_PATH]);
     pvariables->progress = 40;
@@ -211,7 +211,7 @@ bool generate_freeldr_ini(utils_variables *pvariables)
     
 #ifdef _WIN32
     sprintf(temp_path, "%sfreeldr.ini", pvariables->partitions[pvariables->current_partition]);
-#else __linux__
+#elif __linux__
     sprintf(temp_path, "%s/freeldr.ini", pvariables->mounted_path);
 #endif
 
