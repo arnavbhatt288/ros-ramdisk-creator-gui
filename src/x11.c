@@ -112,9 +112,9 @@ start_program(void)
     
     if (getuid())
     {
-		printf("Run this program as root!\n");
-		return 0;
-	}
+        printf("Run this program as root!\n");
+        return 0;
+    }
     
     /* Struct initialization */
     memset(&variables, 0, sizeof variables);
