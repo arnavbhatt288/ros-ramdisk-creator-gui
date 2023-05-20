@@ -110,6 +110,12 @@ start_program(void)
     struct nk_context *ctx;
     utils_variables variables;
     
+    if (getuid())
+    {
+		printf("Run this program as root!\n");
+		return 0;
+	}
+    
     /* Struct initialization */
     memset(&variables, 0, sizeof variables);
     gather_partitions(&variables);

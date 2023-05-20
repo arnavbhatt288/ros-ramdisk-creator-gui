@@ -180,7 +180,7 @@ void gather_partitions(utils_variables *pvariables)
     }
 
     pvariables->partitions_amount = count_line(fp);
-    char drives_tmp[pvariables->partitions_amount][12];
+    char drives_tmp[pvariables->partitions_amount][128];
 
     while (fgets(temp, 128, fp) != NULL)
     {
@@ -191,6 +191,7 @@ void gather_partitions(utils_variables *pvariables)
             ret = strrchr(temp, ' ');
             ret++;
             ret[strlen(ret) - 1] = '\0';
+
             strcpy(drives_tmp[count ], "/dev/");
             strcat(drives_tmp[count], ret);
             count++;
